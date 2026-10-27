@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cube Timer BD - 3x3 Speedcubing Timer</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1 id="appName" data-i18n="appName">Cube Timer BD</h1>
+    <p class="tagline" id="tagline" data-i18n="tagline">3x3 speedcubing timer — scrambles, precise timing and averages</p>
+  </div>
+  <button id="langBtn" type="button" aria-label="Switch language"></button>
+</header>
+
+<main>
+  <section class="card scramble-card">
+    <div class="row-between">
+      <h2 data-i18n="scrambleLabel">Scramble</h2>
+      <button id="newScrambleBtn" type="button" data-i18n="newScramble">New scramble</button>
+    </div>
+    <p id="scrambleText" class="scramble" aria-live="polite"></p>
+  </section>
+
+  <section class="card timer-card" id="timerCard">
+    <div id="timeDisplay" class="time" aria-live="off">0.00</div>
+    <p id="timerStatus" class="status" data-i18n="timerHint">Hold SPACE to arm, release to start, press SPACE again to stop. Or use the buttons.</p>
+    <div class="btn-row">
+      <button id="startBtn" type="button" class="primary" data-i18n="start">Start</button>
+      <button id="stopBtn" type="button" data-i18n="stop">Stop</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="manualLabel">Enter a time by hand</h2>
+    <div class="manual-row">
+      <input id="manualInput" type="text" inputmode="decimal" autocomplete="off"
+        data-i18n-placeholder="manualPlaceholder" placeholder="e.g. 12.34 or 1:01.23">
+      <button id="addManualBtn" type="button" data-i18n="addTime">Add time</button>
+    </div>
+    <p id="manualError" class="error" hidden></p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="statsTitle">Statistics</h2>
+    <dl class="stats">
+      <div><dt data-i18n="solves">Solves</dt><dd id="statCount">0</dd></div>
+      <div><dt data-i18n="best">Best</dt><dd id="statBest">—</dd></div>
+      <div><dt data-i18n="worst">Worst</dt><dd id="statWorst">—</dd></div>
+      <div><dt data-i18n="mean">Mean</dt><dd id="statMean">—</dd></div>
+      <div><dt data-i18n="ao5">Ao5 (last 5)</dt><dd id="statAo5">—</dd></div>
+      <div><dt data-i18n="ao12">Ao12 (last 12)</dt><dd id="statAo12">—</dd></div>
+    </dl>
+  </section>
+
+  <section class="card">
+    <div class="row-between">
+      <h2 data-i18n="historyTitle">History</h2>
+      <div class="btn-row small">
+        <button id="exportBtn" type="button" data-i18n="export">Export JSON</button>
+        <label class="file-label" for="importFile" data-i18n="import">Import JSON</label>
+        <input id="importFile" type="file" accept="application/json,.json" hidden>
+        <button id="clearBtn" type="button" class="danger" data-i18n="clearAll">Clear all</button>
+      </div>
+    </div>
+    <p id="importMsg" class="msg" hidden></p>
+    <p id="emptyHistory" data-i18n="emptyHistory">No solves yet — time your first solve!</p>
+    <ol id="historyList" class="history" reversed></ol>
+  </section>
+</main>
+
+<footer>
+  <p data-i18n="footer">Fully offline — your data stays on this device only. A personal practice tool, not an official WCA timer.</p>
+</footer>
+
+<script src="js/logic.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
